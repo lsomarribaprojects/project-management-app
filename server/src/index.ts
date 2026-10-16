@@ -1,11 +1,16 @@
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Headers de seguridad (checklist H1) y sin X-Powered-By
+app.disable('x-powered-by');
+app.use(helmet());
 
 // CORS solo para el frontend propio (checklist X2). En produccion definir CLIENT_URL
 // (p. ej. https://app.midominio.com); varios origenes separados por coma.
